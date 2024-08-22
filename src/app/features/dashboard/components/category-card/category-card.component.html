@@ -1,0 +1,37 @@
+<div class="flex flex-col shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-md p-4 overflow-scroll">
+  <h1 class="text-sm font-bold uppercase">{{ category }}</h1>
+  <table class="rounded-sm border-collapse w-full" *ngIf="count$ | async as count">
+    <tr>
+      <th class="border text-sm font-light">
+        <div class="mt-3">Product</div>
+      </th>
+      <th class="border text-sm font-light mb-10">
+        <div class="mt-3">Price</div>
+      </th>
+      <th class="border text-sm font-light mb-10">
+        <div class="mt-3">Quantity</div>
+      </th>
+    </tr>
+    <ng-container *ngFor="let product of products | keyvalue" class="my-10">
+      <tr *ngFor="let order of product.value; let index = index" class="my-10">
+        <td class="border text-left" [attr.rowspan]="product.value.length" *ngIf="index === 0">
+          <p class="px-10">{{ product.key }}</p>
+        </td>
+        <td [ngClass]="{
+            'text-red-700':
+              index !== product.value.length - 1  && order.price < product.value[index + 1].price,
+            'text-green-700':
+              index === product.value.length - 1 ||
+              (index !== product.value.length - 1 && order.price > product.value[index + 1].price)
+          }" class="border text-center">
+          <p class="px-6">
+            {{ order.price | currency : "EUR" : "symbol-narrow" }}
+          </p>
+        </td>
+        <td class="border text-center">
+          <p class="px-10">{{ order.quantity }}</p>
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+</div>

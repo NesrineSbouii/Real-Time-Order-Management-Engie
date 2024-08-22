@@ -1,0 +1,29 @@
+<div class="flex flex-col w-full items-center justify-between">
+    <div class="flex flew-row gap-4 p-5">
+        <button class="w-20 h-10 bg-green-800 text-white" (click)="open()" [disabled]="(connected$ | async) === true">
+            Open
+        </button>
+        <button class="w-20 h-10 bg-red-800 text-white" (click)="close()" [disabled]="(connected$ | async) === false">
+            Close
+        </button>
+    </div>
+    <div class="my-10 flex flex-row gap-2" *ngIf="count$ | async as count">
+        <button [ngClass]="{ 'bg-green-700 text-white': count === 30 }" (click)="chooseCount(30)"
+            class="border border-gray-500 w-20 h-10 text-black">
+            30sec
+        </button>
+        <button [ngClass]="{ 'bg-green-700 text-white': count === 60 }" (click)="chooseCount(60)"
+            class="border border-gray-500 w-20 h-10 text-black">
+            60sec
+        </button>
+        <button [ngClass]="{ 'bg-green-700 text-white': count === 120 }" (click)="chooseCount(120)"
+            class="border border-gray-500 w-20 h-10 text-black">
+            120sec
+        </button>
+    </div>
+    <div class="flex flex-col md:flex-row gap-5 p-5">
+        <app-category-card [category]="element.category" [products]="element.products"
+            *ngFor="let element of productsGroupedByCategory$ | async">
+        </app-category-card>
+    </div>
+</div>
