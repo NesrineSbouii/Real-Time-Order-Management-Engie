@@ -54,3 +54,15 @@ Steps to Install and Run the Project Locally
    ```
     npm run dev OR npm run dev:server && npm run dev:start
    ```
+
+# DEMO
+
+
+
+https://github.com/user-attachments/assets/691a7260-cb8d-43fa-b346-5b6eff90ac97
+
+
+
+https://github.com/user-attachments/assets/4863cd57-e5c1-4ec5-a884-a07a2ce131ac
+
+
